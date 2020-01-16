@@ -1,0 +1,18 @@
+name: SS-FancyDrops
+version: @version@
+main: me.ste.stevesseries.fancydrops.FancyDrops
+api-version: "1.13"
+prefix: SS | Fancy Drops
+depend: [ProtocolLib]
+authors: [SteveTheEngineer]
+description: Basically, a more flexible alternative to BetterDrops plugin
+
+commands:
+  fancydropsreload:
+    aliases: [fdrl]
+    description: Reload Fancy Drops
+
+permissions:
+  stevesseries.fancydrops.reload:
+    default: op
+    description: Permission that is required to use /fancydropsreload command
