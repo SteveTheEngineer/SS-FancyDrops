@@ -1,9 +1,11 @@
 package me.ste.stevesseries.fancydrops;
 
+import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.UUID;
 
 public class UpdaterTask implements Runnable {
@@ -35,9 +37,11 @@ public class UpdaterTask implements Runnable {
             String settingName = ItemSetting.matchItemSetting(item.getWorld(), item.getItemStack());
             if (settingName != null) {
                 ItemSetting setting = ItemSetting.ITEM_SETTINGS.get(settingName);
+                Location newLoc = setting.getValues().applyItemOffset(item.getLocation());
 
-                fancyItem.teleport(setting.getValues().applyItemOffset(item.getLocation()));
-                fancyItem.setVelocity(item.getVelocity());
+                if(!fancyItem.getLocation().equals(newLoc)) {
+                    fancyItem.teleport(newLoc);
+                }
             }
         }
         for (UUID k : new HashSet<>(plugin.HINTS.keySet())) {
@@ -64,10 +68,15 @@ public class UpdaterTask implements Runnable {
             String settingName = ItemSetting.matchItemSetting(item.getWorld(), item.getItemStack());
             if (settingName != null) {
                 ItemSetting setting = ItemSetting.ITEM_SETTINGS.get(settingName);
+                Location newLoc = setting.getValues().applyHintOffset(item.getLocation());
+                String hintt = setting.getValues().getProcessedHint(item.getItemStack());
 
-                hint.teleport(setting.getValues().applyHintOffset(item.getLocation()));
-                hint.setVelocity(item.getVelocity());
-                hint.setCustomName(setting.getValues().getProcessedHint(item.getItemStack()));
+                if(!hint.getLocation().equals(newLoc)) {
+                    hint.teleport(newLoc);
+                }
+                if(!Objects.equals(hint.getCustomName(), hintt)) {
+                    hint.setCustomName(hintt);
+                }
             }
         }
     }
