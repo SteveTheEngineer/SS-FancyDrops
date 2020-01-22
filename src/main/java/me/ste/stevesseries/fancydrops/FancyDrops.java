@@ -43,7 +43,7 @@ public final class FancyDrops extends JavaPlugin {
         reloadSettings();
         getServer().getPluginManager().registerEvents(new EventListener(), this);
         this.entityHider = new EntityHider(this, EntityHider.Policy.BLACKLIST);
-        getServer().getScheduler().runTaskTimerAsynchronously(this, new UpdaterTask(), 0L, 1L);
+        getServer().getScheduler().runTaskTimer(this, new UpdaterTask(), 0L, 1L);
         getServer().getWorlds().forEach(w -> w.getEntitiesByClass(Item.class).forEach(this::replaceItem));
     }
 
