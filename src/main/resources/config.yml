@@ -100,6 +100,38 @@ items:
         x: 0
         y: 0.5
         z: 0
+  buttons:
+    condition:
+      materials:
+        - STONE_BUTTON
+        - OAK_BUTTON
+        - SPRUCE_BUTTON
+        - BIRCH_BUTTON
+        - JUNGLE_BUTTON
+        - ACACIA_BUTTON
+        - DARK_OAK_BUTTON
+      displayNames: []
+      amounts: []
+      worlds: []
+    values:
+      fancyItem: true
+      invisible: false
+      small: false
+      slot: HEAD
+      showHint: true
+      hint: x%%Amount%%
+      eulerAngle:
+        x: 0
+        y: 0
+        z: 0
+      itemOffset:
+        x: 0
+        y: -1.61
+        z: 0
+      hintOffset:
+        x: 0
+        y: 0.5
+        z: 0
   basicBlocks:
     condition:
       materials:
@@ -714,6 +746,11 @@ items:
         - STONE_AXE
         - IRON_AXE
         - DIAMOND_AXE
+        - WOODEN_HOE
+        - GOLDEN_HOE
+        - STONE_HOE
+        - IRON_HOE
+        - DIAMOND_HOE
         - WOODEN_SWORD
         - GOLEN_SWORD
         - STONE_SWORD
@@ -751,7 +788,7 @@ items:
         - STICK
         - BAMBOO
         - BONE
-        - BLAzE_ROD
+        - BLAZE_ROD
       displayNames: []
       amounts: []
       worlds: []
