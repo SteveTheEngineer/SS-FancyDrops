@@ -3,7 +3,10 @@ plugins {
 }
 
 group = pluginGroup
-version = pluginVersion
+version = "0"
+if(System.env.BUILD_NUMBER != null) {
+    version = "" + System.env.BUILD_NUMBER
+}
 
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
