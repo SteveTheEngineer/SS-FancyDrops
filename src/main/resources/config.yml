@@ -1352,7 +1352,7 @@ items:
       small: true # Make the armor stand small. Fancy items only
       slot: HEAD # Armor stand slot, where to place the item. Fancy items only. Accepted values: HEAD, CHEST, LEGS, FEET, HAND_RIGHT and HAND_LEFT
       showHint: true # Show a hint above item. Works even if the item is entirely invisible
-      hint: x%%Amount%% # Hint text. Color codes are supported. Variables: %%Amount%%, %%DisplayName%% and %%Material%%. If you type the entire variable in lower case, inserted text will be also lower case. Same for upper case
+      hint: &c&lUNKNOWN ITEM &6&l(%%Material%% x%%Amount%%) # Hint text. Color codes are supported. Variables: %%Amount%%, %%DisplayName%% and %%Material%%. If you type the entire variable in lower case, inserted text will be also lower case. Same for upper case
       eulerAngle: # Head / hand rotation of armor stand. Fancy items only
         x: 0
         y: 0
