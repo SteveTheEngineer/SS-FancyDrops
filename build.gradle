@@ -2,7 +2,7 @@ plugins {
     id "java"
 }
 
-group = pluginGroup
+group = "me.ste.stevesseries"
 version = "0"
 if(System.env.BUILD_NUMBER != null) {
     version = "" + System.env.BUILD_NUMBER
@@ -28,9 +28,9 @@ repositories {
 }
 
 dependencies {
-    testCompile group: "junit", name: "junit", version: "4.12"
-    compileOnly group: "org.spigotmc", name: "spigot-api", version: "1.15.1-R0.1-SNAPSHOT"
-    compileOnly group: "com.comphenix.protocol", name: "ProtocolLib", version: "4.5.0"
+    compileOnly "org.spigotmc:spigot-api:1.15.1-R0.1-SNAPSHOT"
+    compileOnly "com.comphenix.protocol:ProtocolLib:4.6.0-20201007.174347-8"
+    //compileOnly files("libs/server.jar")
 }
 
 import org.apache.tools.ant.filters.ReplaceTokens

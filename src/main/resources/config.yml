@@ -1,40 +1,46 @@
 messages:
-  noPermission: "&cYou don't have permission to run this command" # Message sent when player doesn't have permission to run /fancydropsreload command. Variables: %%Sender%%. If you type the entire variable in lower case, inserted text will be also lower case. Same for upper case
-  pluginReloaded: "&aSteve's Series | Fancy Drops has successfully been reloaded" # Message sent when plugin has been successfully reloaded. Variables: %%Sender%%. If you type the entire variable in lower case, inserted text will be also lower case. Same for upper case 
-items:
+  config-reloaded: "&eThe plugin configuration has been reloaded"
+  no-permission: "&cInsufficient permissions"
+presets: # The first matched entry in this section will be used as the item preset
   skulls:
-    condition:
-      materials:
+    match: # The matching rules of this preset
+      materials: # The list of materials to match. The entries in this list are regular expressions. If the list is empty, or this entry isn't present, any material will be accepted
         - SKELETON_SKULL
         - WITHER_SKELETON_SKULL
         - PLAYER_HEAD
         - ZOMBIE_HEAD
         - CREEPER_HEAD
         - DRAGON_HEAD
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      small: false
-      slot: HEAD
-      showHint: false
-      hint: ""
-      eulerAngle:
-        x: 0
-        y: 0
-        z: 0
-      itemOffset:
-        x: 0
-        y: -1.435
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0.5
-        z: 0
+      displayNames: [] # The list of item display names to match. The entries in this list are regular expressions. If the list is empty, or this entry isn't present, any display name will be accepted
+      minAmount: 0 # The minimum amount of the item to match
+      maxAmount: 127 # The maximum amount of the item to match
+    settings:
+      rightClickPickup: DISABLED # The right click pickup mode for this preset. DISABLED means the item can only be picked up by coming close to it, ENABLED means the item can be picked up both ways, and REQUIRED means the item can ONLY be picked up by right clicking on it. This feature requires at least one entity of the item to not be a marker
+    entities: # The armor stands of the item
+      item:
+        position: # The position relative to the item position. This is also affected by the item rotation
+          x: 0 # Default: 0
+          y: -1.435 # Default: 0
+          z: 0 # Default: 0
+        bodyParts:
+          head: # The accepted keys are: hand (the angle controls the right arm), off_hand (the angle controls the left arm ), feet (the angle controls the right leg), legs (the angle controls the left leg), chest (the angle controls the body), head (the angle controls the head)
+            angle: # The angles are in degrees
+              x: 0 # Default: 0
+              y: 0 # Default: 0
+              z: 0 # Default: 0
+            item: $item # The item to set to this slot. This can be either a material or $item. If it's set to $item, the item stack of the fancy item will be used instead
+        marker: false # Default: true
+        invsible: true # Default: true
+        small: false # Default: false
+        arms: true # Default: false
+        basePlate: true # Default: true
+        staticRotation: false # If staticYaw is true, the item rotation will always be 0. Default: false
+      hint: # Note that none of the parameters are required to be present
+        position:
+          y: 0.5
+        customName: "x$$amount$$" # The custom name of the armor stand. The variables are: $$material$$, $$amount$$ and $$displayName$$. Default: null
   beds:
-    condition:
+    match:
       materials:
         - WHITE_BED
         - ORANGE_BED
@@ -52,56 +58,30 @@ items:
         - GREEN_BED
         - RED_BED
         - BLACK_BED
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      small: false
-      slot: HEAD
-      showHint: false
-      hint: ""
-      eulerAngle:
-        x: 0
-        y: 0
-        z: 0
-      itemOffset:
-        x: 0
-        y: -1.76
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0.5
-        z: 0
+    entities:
+      item:
+        position:
+          y: -1.76
+        bodyParts:
+          head:
+            item: $item
   endRod:
-    condition:
+    match:
       materials:
         - END_ROD
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      small: false
-      slot: HEAD
-      showHint: true
-      hint: x%%Amount%%
-      eulerAngle:
-        x: -1.0472
-        y: 0
-        z: 0
-      itemOffset:
-        x: 0
-        y: -1.65
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0.5
-        z: 0
+    entities:
+      item:
+        position:
+          y: -1.65
+        bodyParts:
+          head:
+            item: $item
+      hint:
+        position:
+          y: 0.5
+        customName: "x$$amount$$"
   buttons:
-    condition:
+    match:
       materials:
         - STONE_BUTTON
         - OAK_BUTTON
@@ -110,30 +90,22 @@ items:
         - JUNGLE_BUTTON
         - ACACIA_BUTTON
         - DARK_OAK_BUTTON
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      small: false
-      slot: HEAD
-      showHint: true
-      hint: x%%Amount%%
-      eulerAngle:
-        x: 0
-        y: 0
-        z: 0
-      itemOffset:
-        x: 0
-        y: -1.61
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0.5
-        z: 0
+        - CRIMSON_BUTTON
+        - WARPED_BUTTON
+        - POLISHED_BLACKSTONE_BUTTON
+    entities:
+      item:
+        position:
+          y: -1.61
+        bodyParts:
+          head:
+            item: $item
+      hint:
+        position:
+          y: 0.5
+        customName: "x$$amount$$"
   basicBlocks:
-    condition:
+    match:
       materials:
         - BEACON
         - COMPOSTER
@@ -556,138 +528,154 @@ items:
         - CHAIN_COMMAND_BLOCK
         - JIGSAW
         - STRUCTURE_BLOCK
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      small: false
-      slot: HEAD
-      showHint: true
-      hint: x%%Amount%%
-      eulerAngle:
-        x: 0
-        y: 0
-        z: 0
-      itemOffset:
-        x: 0
-        y: -1.375
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0.5
-        z: 0
+        - CRIMSON_NYLIUM
+        - WARPED_NYLIUM
+        - CRIMSON_PLANKS
+        - WARPED_PLANKS
+        - NETHER_GOLD_ORE
+        - CRIMSON_STEM
+        - WARPED_STEM
+        - STRIPPED_CRIMSON_STEM
+        - STRIPPED_WARPED_STEM
+        - STRIPPED_CRIMSON_HYPHAE
+        - STRIPPED_WARPED_HYPHAE
+        - CRIMSON_HYPHAE
+        - WARPED_HYPHAE
+        - CRIMSON_SLAB
+        - WARPED_SLAB
+        - SOUL_SOIL
+        - BASALT
+        - POLISHED_BASALT
+        - CRACKED_NETHER_BRICKS
+        - CHISELED_NETHER_BRICKS
+        - CRIMSON_STAIRS
+        - WARPED_STAIRS
+        - QUARTZ_BRICKS
+        - WARPED_WART_BLOCK
+        - NETHERITE_BLOCK
+        - ANCIENT_DEBRIS
+        - CRYING_OBSIDIAN
+        - BLACKSTONE
+        - BLACKSTONE_SLAB
+        - BLACKSTONE_STAIRS
+        - GILDED_BLACKSTONE
+        - POLISHED_BLACKSTONE
+        - POLISHED_BLACKSTONE_SLAB
+        - POLISHED_BLACKSTONE_STAIRS
+        - CHISELED_POLISHED_BLACKSTONE
+        - POLISHED_BLACKSTONE_BRICKS
+        - POLISHED_BLACKSTONE_BRICK_SLAB
+        - POLISHED_BLACKSTONE_BRICK_STAIRS
+        - CRACKED_POLISHED_BLACKSTONE_BRICKS
+        - SHROOMLIGHT
+        - LODESTONE
+        - RESPAWN_ANCHOR
+        - TARGET
+        - CRIMSON_PRESSURE_PLATE
+        - WARPED_PRESSURE_PLATE
+        - POLISHED_BLACKSTONE_PRESSURE_PLATE
+        - CRIMSON_TRAPDOOR
+        - WARPED_TRAPDOOR
+        - CRIMSON_FENCE
+        - WARPED_FENCE
+        - BLACKSTONE_WALL
+        - POLISHED_BLACKSTONE_WALL
+        - POLISHED_BLACKSTONE_BRICK_WALL
+    entities:
+      item:
+        position:
+          y: -1.375
+        bodyParts:
+          head:
+            item: $item
+      hint:
+        position:
+          y: 0.5
+        customName: "x$$amount$$"
+  fenceGates:
+    match:
+      materials:
+        - OAK_FENCE_GATE
+        - SPRUCE_FENCE_GATE
+        - BIRCH_FENCE_GATE
+        - JUNGLE_FENCE_GATE
+        - ACACIA_FENCE_GATE
+        - DARK_OAK_FENCE_GATE
+        - CRIMSON_FENCE_GATE
+        - WARPED_FENCE_GATE
+    entities:
+      item:
+        position:
+          x: -0.25
+          y: -1.46
+        bodyParts:
+          head:
+            item: $item
+      hint:
+        position:
+          y: 0.5
+        customName: "x$$amount$$"
   crossbow:
-    condition:
+    match:
       materials:
         - CROSSBOW
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      fixedRotation: false
-      small: false
-      slot: HAND_RIGHT
-      showHint: false
-      hint: ""
-      eulerAngle:
-        x: 1.570795
-        y: 1.8326
-        z: 0
-      itemOffset:
-        x: 0
-        y: -1.215
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0
-        z: 0
+    entities:
+      item:
+        position:
+          y: -1.215
+          z: 0.5
+        bodyParts:
+          hand:
+            angle:
+              x: 90
+              y: 105
+            item: $item
   trident:
-    condition:
+    match:
       materials:
         - TRIDENT
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      fixedRotation: false
-      small: false
-      slot: HAND_RIGHT
-      showHint: false
-      hint: ""
-      eulerAngle:
-        x: 3.14159
-        y: 0
-        z: 2.0944
-      itemOffset:
-        x: 0
-        y: -1.115
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0
-        z: 0
+    entities:
+      item:
+        position:
+          y: -1.115
+        bodyParts:
+          hand:
+            angle:
+              x: 180
+              z: 120
+            item: $item
   shield:
-    condition:
+    match:
       materials:
         - SHIELD
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      fixedRotation: false
-      small: false
-      slot: HAND_RIGHT
-      showHint: false
-      hint: ""
-      eulerAngle:
-        x: 0
-        y: 0
-        z: -1.570795
-      itemOffset:
-        x: 0
-        y: -1.06
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0
-        z: 0
+    entities:
+      item:
+        position:
+          y: -1.06
+          z: 0.1
+        bodyParts:
+          hand:
+            angle:
+              z: -90
+            item: $item
   bow:
-    condition:
+    match:
       materials:
         - BOW
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      fixedRotation: false
-      small: false
-      slot: HAND_RIGHT
-      showHint: false
-      hint: ""
-      eulerAngle:
-        x: 3.14159
-        y: -0.174533
-        z: 1.570795
-      itemOffset:
-        x: 0
-        y: -1.3418
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0
-        z: 0
+    entities:
+      item:
+        position:
+          y: -1.3418
+          z: 0.25
+        bodyParts:
+          hand:
+            angle:
+              x: 180
+              y: -10
+              z: 90
+            item: $item
   banners:
-    condition:
+    match:
       materials:
         - WHITE_BANNER
         - ORANGE_BANNER
@@ -705,31 +693,24 @@ items:
         - GREEN_BANNER
         - RED_BANNER
         - BLACK_BANNER
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      fixedRotation: false
-      small: false
-      slot: HAND_RIGHT
-      showHint: true
-      hint: x%%Amount%%
-      eulerAngle:
-        x: 3.14159
-        y: 0
-        z: 1.570795
-      itemOffset:
-        x: 0
-        y: -1.4218
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0
-        z: 0
-  rodItemsUnstackable:
-    condition:
+    entities:
+      item:
+        position:
+          x: 0.45
+          y: -1.4218
+          z: 0.25
+        bodyParts:
+          hand:
+            angle:
+              x: 180
+              z: 90
+            item: $item
+      hint:
+        position:
+          y: 0.5
+        customName: "x$$amount$$"
+  rodsUnstackable:
+    match:
       materials:
         - WOODEN_SHOVEL
         - GOLDEN_SHOVEL
@@ -752,68 +733,56 @@ items:
         - IRON_HOE
         - DIAMOND_HOE
         - WOODEN_SWORD
-        - GOLEN_SWORD
+        - GOLDEN_SWORD
         - STONE_SWORD
         - IRON_SWORD
         - DIAMOND_SWORD
         - FISHING_ROD
         - CARROT_ON_A_STICK
         - DEBUG_STICK
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      fixedRotation: false
-      small: false
-      slot: HAND_RIGHT
-      showHint: false
-      hint: ""
-      eulerAngle:
-        x: 3.14159
-        y: 0
-        z: 1.570795
-      itemOffset:
-        x: 0
-        y: -1.4118
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0
-        z: 0
-  rodItemsStackable:
-    condition:
+        - NETHERITE_SHOVEL
+        - NETHERITE_PICKAXE
+        - NETHERITE_AXE
+        - NETHERITE_HOE
+        - NETHERITE_SWORD
+        - WARPED_FUNGUS_ON_A_STICK
+    entities:
+      item:
+        position:
+          x: 0.375
+          y: -1.4118
+          z: 0.25
+        bodyParts:
+          hand:
+            angle:
+              x: 180
+              z: 90
+            item: $item
+  rodsStackable:
+    match:
       materials:
         - STICK
         - BAMBOO
         - BONE
         - BLAZE_ROD
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      fixedRotation: false
-      small: false
-      slot: HAND_RIGHT
-      showHint: true
-      hint: x%%Amount%%
-      eulerAngle:
-        x: 3.14159
-        y: 0
-        z: 1.570795
-      itemOffset:
-        x: 0
-        y: -1.4118
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0
-        z: 0
+    entities:
+      item:
+        position:
+          x: 0.375
+          y: -1.4118
+          z: 0.25
+        bodyParts:
+          hand:
+            angle:
+              x: 180
+              z: 90
+            item: $item
+      hint:
+        position:
+          y: 0.5
+        customName: "x$$amount$$"
   basicItemsUnstackable:
-    condition:
+    match:
       materials:
         - WATER_BUCKET
         - LAVA_BUCKET
@@ -870,32 +839,19 @@ items:
         - HOPPER_MINECART
         - WRITTEN_BOOK
         - KNOWLEDGE_BOOK
-        - COMMAN_BLOCK_MINECART
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      fixedRotation: false
-      small: false
-      slot: HAND_RIGHT
-      showHint: false
-      hint: ""
-      eulerAngle:
-        x: 0
-        y: -1.570795
-        z: 0
-      itemOffset:
-        x: 0
-        y: -0.796
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0
-        z: 0
+        - COMMAND_BLOCK_MINECART
+        - PIGLIN_BANNER_PATTERN
+    entities:
+      item:
+        position:
+          y: -0.796
+        bodyParts:
+          hand:
+            angle:
+              y: -90
+            item: $item
   basicItemsStackable:
-    condition:
+    match:
       materials:
         - TURTLE_EGG
         - SCUTE
@@ -1006,10 +962,10 @@ items:
         - WITCH_SPAWN_EGG
         - WITHER_SKELETON_SPAWN_EGG
         - WOLF_SPAWN_EGG
-        - zOMBIE_SPAWN_EGG
-        - zOMBIE_HORSE_SPAWN_EGG
-        - zOMBIE_PIGMAN_SPAWN_EGG
-        - zOMBIE_VILLAGER_SPAWN_EGG
+        - ZOMBIE_SPAWN_EGG
+        - ZOMBIE_HORSE_SPAWN_EGG
+        - ZOMBIFIED_PIGLIN_SPAWN_EGG
+        - ZOMBIE_VILLAGER_SPAWN_EGG
         - EXPERIENCE_BOTTLE
         - FIRE_CHARGE
         - EMERALD
@@ -1191,31 +1147,43 @@ items:
         - ACTIVATOR_RAIL
         - BARRIER
         - STRUCTURE_VOID
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      fixedRotation: false
-      small: false
-      slot: HAND_RIGHT
-      showHint: true
-      hint: x%%Amount%%
-      eulerAngle:
-        x: 0
-        y: -1.570795
-        z: 0
-      itemOffset:
-        x: 0
-        y: -0.796
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0
-        z: 0
+        - CRIMSON_DOOR
+        - WARPED_DOOR
+        - NETHERITE_INGOT
+        - NETHERITE_SCRAP
+        - HOGLIN_SPAWN_EGG
+        - PIGLIN_SPAWN_EGG
+        - PIGLIN_BRUTE_SPAWN_EGG
+        - ZOGLIN_SPAWN_EGG
+        - CRIMSON_FUNGUS
+        - WARPED_FUNGUS
+        - CRIMSON_ROOTS
+        - WARPED_ROOTS
+        - NETHER_SPROUTS
+        - WEEPING_VINES
+        - TWISTING_VINES
+        - SOUL_TORCH
+        - CHAIN
+        - CRIMSON_SIGN
+        - WARPED_SIGN
+        - SOUL_LANTERN
+        - SOUL_CAMPFIRE
+        - STRIDER_SPAWN_EGG
+    entities:
+      item:
+        position:
+          y: -0.796
+        bodyParts:
+          hand:
+            angle:
+              y: -90
+            item: $item
+      hint:
+        position:
+          y: 0.5
+        customName: "x$$amount$$"
   helmets:
-    condition:
+    match:
       materials:
         - LEATHER_HELMET
         - GOLDEN_HELMET
@@ -1223,145 +1191,61 @@ items:
         - IRON_HELMET
         - DIAMOND_HELMET
         - TURTLE_HELMET
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      fixedRotation: false
-      small: false
-      slot: HEAD
-      showHint: false
-      hint: ""
-      eulerAngle:
-        x: 3.14159
-        y: 0
-        z: 0
-      itemOffset:
-        x: 0
-        y: -0.875
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0
-        z: 0
+        - NETHERITE_HELMET
+    entities:
+      item:
+        position:
+          y: -0.875
+        bodyParts:
+          head:
+            angle:
+              x: 180
+            item: $item
   chestplates:
-    condition:
+    match:
       materials:
         - LEATHER_CHESTPLATE
         - GOLDEN_CHESTPLATE
         - CHAINMAIL_CHESTPLATE
         - IRON_CHESTPLATE
         - DIAMOND_CHESTPLATE
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      fixedRotation: false
-      small: false
-      slot: CHEST
-      showHint: false
-      hint: ""
-      eulerAngle:
-        x: 0
-        y: 0
-        z: 0
-      itemOffset:
-        x: 0
-        y: -0.835
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0
-        z: 0
+        - NETHERITE_CHESTPLATE
+    entities:
+      item:
+        position:
+          y: -0.835
+        bodyParts:
+          chest:
+            item: $item
   leggings:
-    condition:
+    match:
       materials:
         - LEATHER_LEGGINGS
         - GOLDEN_LEGGINGS
         - CHAINMAIL_LEGGINGS
         - IRON_LEGGINGS
         - DIAMOND_LEGGINGS
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      fixedRotation: false
-      small: false
-      slot: LEGS
-      showHint: false
-      hint: ""
-      eulerAngle:
-        x: 0
-        y: 0
-        z: 0
-      itemOffset:
-        x: 0
-        y: -0.237
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0
-        z: 0
+        - NETHERITE_LEGGINGS
+    entities:
+      item:
+        position:
+          y: -0.237
+        bodyParts:
+          legs:
+            item: $item
   boots:
-    condition:
+    match:
       materials:
         - LEATHER_BOOTS
         - GOLDEN_BOOTS
         - CHAINMAIL_BOOTS
         - IRON_BOOTS
         - DIAMOND_BOOTS
-      displayNames: []
-      amounts: []
-      worlds: []
-    values:
-      fancyItem: true
-      invisible: false
-      fixedRotation: false
-      small: false
-      slot: FEET
-      showHint: false
-      hint: ""
-      eulerAngle:
-        x: 0
-        y: 0
-        z: 0
-      itemOffset:
-        x: 0
-        y: 0
-        z: 0
-      hintOffset:
-        x: 0
-        y: 0
-        z: 0
-  default: # Default setting
-    condition: # This setting is default because all conditions are set to [], so it accepts any item
-      materials: [] # Affected materials. RegExp. Set to [] to allow any material
-      displayNames: [] # Affected display names. RegExp. Set to [] to allow any display name
-      amounts: [] # Affected amounts. You can also define ranges, example: 16-32. Set to [] to allow any amount
-      worlds: [] # Affected worlds. RegExp. Set to [] to allow any world
-    values:
-      fancyItem: true # Make item fancy
-      invisible: false # Make item entirely invisible. Fancy items only
-      fixedRotation: false # Force yaw to be 0. If set to false yaw is a random value
-      small: true # Make the armor stand small. Fancy items only
-      slot: HEAD # Armor stand slot, where to place the item. Fancy items only. Accepted values: HEAD, CHEST, LEGS, FEET, HAND_RIGHT and HAND_LEFT
-      showHint: true # Show a hint above item. Works even if the item is entirely invisible
-      hint: &c&lUNKNOWN ITEM &6&l(%%Material%% x%%Amount%%) # Hint text. Color codes are supported. Variables: %%Amount%%, %%DisplayName%% and %%Material%%. If you type the entire variable in lower case, inserted text will be also lower case. Same for upper case
-      eulerAngle: # Head / hand rotation of armor stand. Fancy items only
-        x: 0
-        y: 0
-        z: 0
-      itemOffset: # Item armor stand position offset. Fancy items only
-        x: 0
-        y: 0
-        z: 0
-      hintOffset: # Hint armor stand position offset. Works only if hint is enabled
-        x: 0
-        y: 0
-        z: 0
+        - NETHERITE_BOOTS
+    entities:
+      item:
+        position:
+          y: 0.065
+        bodyParts:
+          feet:
+            item: $item
