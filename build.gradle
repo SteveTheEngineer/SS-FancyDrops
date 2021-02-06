@@ -30,7 +30,6 @@ repositories {
 dependencies {
     compileOnly "org.spigotmc:spigot-api:1.15.1-R0.1-SNAPSHOT"
     compileOnly "com.comphenix.protocol:ProtocolLib:4.6.0-20201007.174347-8"
-    //compileOnly files("libs/server.jar")
 }
 
 import org.apache.tools.ant.filters.ReplaceTokens
