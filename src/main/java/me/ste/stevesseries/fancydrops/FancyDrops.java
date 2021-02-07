@@ -56,7 +56,7 @@ public final class FancyDrops extends JavaPlugin {
                 if(event.getPacket().getEntityTypeModifier().read(0) == EntityType.DROPPED_ITEM) {
                     UUID uniqueId = event.getPacket().getUUIDs().read(0);
                     FancyItem fancyItem = FancyItem.ITEMS.get(uniqueId);
-                    if(fancyItem != null && !fancyItem.getObservers().contains(event.getPlayer())) {
+                    if(fancyItem != null) {
                         event.setCancelled(true);
                         fancyItem.addObserver(event.getPlayer());
                     }
@@ -69,7 +69,7 @@ public final class FancyDrops extends JavaPlugin {
             public void onPacketSending(PacketEvent event) {
                 for(int id : event.getPacket().getIntegerArrays().read(0)) {
                     FancyItem fancyItem = FancyItem.getByEntityId(id);
-                    if(fancyItem != null && fancyItem.getObservers().contains(event.getPlayer())) {
+                    if(fancyItem != null) {
                         fancyItem.removeObserver(event.getPlayer());
                     }
                 }
