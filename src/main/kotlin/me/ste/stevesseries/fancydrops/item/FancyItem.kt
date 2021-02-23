@@ -24,7 +24,6 @@ class FancyItem(var preset: FancyItemPreset, val item: Item) {
         val ITEMS: MutableMap<UUID, FancyItem> = HashMap()
 
         fun getByEntityId(id: Int): FancyItem? {
-            val items = this.ITEMS
             for ((_, item) in this.ITEMS) {
                 if (item.item.entityId == id) {
                     return item
@@ -105,7 +104,7 @@ class FancyItem(var preset: FancyItemPreset, val item: Item) {
                 observer,
                 PacketPlayOutEntityTeleport(stand.entityId, stand.location, this.item.isOnGround).container
             )
-            ProtocolLibrary.getProtocolManager().sendServerPacket(observer, stand.entityMetadataPacket)
+            ProtocolLibrary.getProtocolManager().sendServerPacket(observer, stand.getEntityMetadataPacket(observer))
 
             val equipmentPacket = stand.equipmentPacket
             if (equipmentPacket != null) {

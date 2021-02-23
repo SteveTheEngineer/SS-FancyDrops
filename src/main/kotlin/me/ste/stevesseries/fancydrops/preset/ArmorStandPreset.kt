@@ -4,6 +4,7 @@ import com.comphenix.protocol.wrappers.Vector3F
 import org.bukkit.Material
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.inventory.EquipmentSlot
+import org.bukkit.util.BoundingBox
 import org.bukkit.util.Vector
 import java.util.*
 
@@ -56,6 +57,8 @@ class ArmorStandPreset(section: ConfigurationSection) {
         private set
     var customName: String? = null
         private set
+    var customNameBoundingBox: BoundingBox? = null
+        private set
 
     init {
         val position = section.getConfigurationSection("position")
@@ -91,14 +94,47 @@ class ArmorStandPreset(section: ConfigurationSection) {
         if(section.isBoolean("arms")) {
             this.arms = section.getBoolean("arms")
         }
-        if(section.isBoolean("basePlate")) {
+        if (section.isBoolean("basePlate")) {
             this.basePlate = section.getBoolean("basePlate")
         }
-        if(section.isBoolean("staticRotation")) {
+        if (section.isBoolean("staticRotation")) {
             this.staticRotation = section.getBoolean("staticRotation")
         }
-        if(section.isString("customName")) {
+        if (section.isString("customName")) {
             this.customName = section.getString("customName")
+        }
+        val customNameBoundingBox = section.getConfigurationSection("customNameBoundingBox")
+        if (customNameBoundingBox != null) {
+            val minVector = Vector()
+            val maxVector = Vector()
+
+            val min = customNameBoundingBox.getConfigurationSection("min")
+            if(min != null) {
+                if(min.contains("x")) {
+                    minVector.x = min.getDouble("x")
+                }
+                if(min.contains("y")) {
+                    minVector.y = min.getDouble("y")
+                }
+                if(min.contains("z")) {
+                    minVector.z = min.getDouble("z")
+                }
+            }
+
+            val max = customNameBoundingBox.getConfigurationSection("max")
+            if(max != null) {
+                if(max.contains("x")) {
+                    maxVector.x = max.getDouble("x")
+                }
+                if(max.contains("y")) {
+                    maxVector.y = max.getDouble("y")
+                }
+                if(max.contains("z")) {
+                    maxVector.z = max.getDouble("z")
+                }
+            }
+
+            this.customNameBoundingBox = BoundingBox.of(Vector.getMinimum(minVector, maxVector), Vector.getMaximum(minVector, maxVector))
         }
     }
 }

@@ -1,8 +1,10 @@
 package me.ste.stevesseries.fancydrops.listener
 
 import me.ste.stevesseries.fancydrops.item.FancyItem
+import org.bukkit.GameMode
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
+import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.event.player.PlayerQuitEvent
 
 object PlayerListener : Listener {

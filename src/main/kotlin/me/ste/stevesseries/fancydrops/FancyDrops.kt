@@ -8,6 +8,8 @@ import me.ste.stevesseries.fancydrops.listener.PlayerListener
 import me.ste.stevesseries.fancydrops.preset.FancyItemPreset
 import net.md_5.bungee.api.ChatColor
 import org.bukkit.Bukkit
+import org.bukkit.GameMode
+import org.bukkit.Particle
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Item
@@ -39,6 +41,26 @@ class FancyDrops : JavaPlugin() {
                 return@removeIf !it.value.update()
             }
         }, 0L, 1L)
+
+        this.server.scheduler.runTaskTimer(this, Runnable {
+            for (player in this.server.onlinePlayers) {
+                val reachDistance = if (player.gameMode == GameMode.CREATIVE) 5.0 else 4.0
+                val blockDistance = player.rayTraceBlocks(reachDistance * 2.0)?.hitPosition?.distance(player.eyeLocation.toVector()) ?: Double.MAX_VALUE
+                for ((_, item) in FancyItem.ITEMS) {
+                    for (stand in item.entities) {
+                        val box = stand.customNameBoundingBox
+                        if (box != null) {
+                            val result = box.rayTrace(
+                                player.eyeLocation.toVector(),
+                                player.location.direction,
+                                reachDistance
+                            )
+                            stand.setCustomNameObserverStatus(player, result != null && result.hitPosition.distance(player.eyeLocation.toVector()) < blockDistance)
+                        }
+                    }
+                }
+            }
+        }, 0L, 5L)
 
         this.getCommand("fancydropsreload")!!.setExecutor { sender, _, _, _ ->
             if(sender.hasPermission("stevesseries.fancydrops.reload")) {

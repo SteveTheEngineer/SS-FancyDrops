@@ -22,3 +22,12 @@ entities:
     position:
       y: 0.5
     customName: x$$amount$$
+    customNameBoundingBox:
+      min:
+        x: -0.5
+        y: -0.5
+        z: -0.5
+      max:
+        x: 0.5
+        y: 0.5
+        z: 0.5
