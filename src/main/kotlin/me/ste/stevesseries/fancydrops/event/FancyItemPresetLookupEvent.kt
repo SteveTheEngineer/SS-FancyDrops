@@ -3,8 +3,9 @@ package me.ste.stevesseries.fancydrops.event
 import me.ste.stevesseries.fancydrops.preset.FancyItemPreset
 import org.bukkit.event.Event
 import org.bukkit.event.HandlerList
+import org.bukkit.inventory.ItemStack
 
-class FancyItemPresetLookupEvent(matched: FancyItemPreset?) : Event() {
+class FancyItemPresetLookupEvent(val stack: ItemStack, matched: FancyItemPreset?) : Event() {
     var pluginModified: Boolean = false
         private set
 

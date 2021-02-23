@@ -57,7 +57,7 @@ class FancyItemPreset(section: ConfigurationSection) {
                 result = preset
                 break
             }
-            val event = FancyItemPresetLookupEvent(result)
+            val event = FancyItemPresetLookupEvent(stack, result)
             Bukkit.getPluginManager().callEvent(event)
             return event.matched
         }
