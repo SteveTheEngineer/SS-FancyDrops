@@ -1,0 +1,14 @@
+priority: 11
+match:
+  materials:
+  - TRIDENT
+entities:
+  item:
+    position:
+      y: -1.115
+    bodyParts:
+      hand:
+        angle:
+          x: 180
+          z: 120
+        item: $item

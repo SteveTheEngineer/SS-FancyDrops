@@ -1,0 +1,19 @@
+priority: 3
+match:
+  materials:
+  - LEATHER_HELMET
+  - GOLDEN_HELMET
+  - CHAINMAIL_HELMET
+  - IRON_HELMET
+  - DIAMOND_HELMET
+  - TURTLE_HELMET
+  - NETHERITE_HELMET
+entities:
+  item:
+    position:
+      y: -0.875
+    bodyParts:
+      head:
+        angle:
+          x: 180
+        item: $item

@@ -1,0 +1,16 @@
+priority: 1
+match:
+  materials:
+  - LEATHER_LEGGINGS
+  - GOLDEN_LEGGINGS
+  - CHAINMAIL_LEGGINGS
+  - IRON_LEGGINGS
+  - DIAMOND_LEGGINGS
+  - NETHERITE_LEGGINGS
+entities:
+  item:
+    position:
+      y: -0.237
+    bodyParts:
+      legs:
+        item: $item

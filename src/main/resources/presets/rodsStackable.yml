@@ -1,0 +1,23 @@
+priority: 6
+match:
+  materials:
+  - STICK
+  - BAMBOO
+  - BONE
+  - BLAZE_ROD
+entities:
+  item:
+    position:
+      x: 0.375
+      y: -1.4118
+      z: 0.25
+    bodyParts:
+      hand:
+        angle:
+          x: 180
+          z: 90
+        item: $item
+  hint:
+    position:
+      y: 0.5
+    customName: x$$amount$$

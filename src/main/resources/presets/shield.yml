@@ -1,0 +1,14 @@
+priority: 10
+match:
+  materials:
+  - SHIELD
+entities:
+  item:
+    position:
+      y: -1.06
+      z: 0.1
+    bodyParts:
+      hand:
+        angle:
+          z: -90
+        item: $item

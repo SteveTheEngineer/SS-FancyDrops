@@ -1,0 +1,26 @@
+priority: 17
+match:
+  materials:
+  - WHITE_BED
+  - ORANGE_BED
+  - MAGENTA_BED
+  - LIGHT_BLUE_BED
+  - YELLOW_BED
+  - LIME_BED
+  - PINK_BED
+  - GRAY_BED
+  - LIGHT_GRAY_BED
+  - CYAN_BED
+  - PURPLE_BED
+  - BLUE_BED
+  - BROWN_BED
+  - GREEN_BED
+  - RED_BED
+  - BLACK_BED
+entities:
+  item:
+    position:
+      y: -1.76
+    bodyParts:
+      head:
+        item: $item

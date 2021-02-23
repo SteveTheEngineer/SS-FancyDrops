@@ -1,5 +1,7 @@
 package me.ste.stevesseries.fancydrops.preset
 
+import me.ste.stevesseries.fancydrops.event.FancyItemPresetLookupEvent
+import org.bukkit.Bukkit
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.inventory.ItemStack
 import java.util.*
@@ -16,6 +18,7 @@ class FancyItemPreset(section: ConfigurationSection) {
         val PRESETS: MutableList<FancyItemPreset> = LinkedList()
 
         fun matchPreset(stack: ItemStack): FancyItemPreset? {
+            var result: FancyItemPreset? = null
             for (preset in this.PRESETS) {
                 var materialMatches = preset.matchMaterials.size <= 0
                 if (!materialMatches) {
@@ -51,11 +54,17 @@ class FancyItemPreset(section: ConfigurationSection) {
                     continue
                 }
 
-                return preset
+                result = preset
+                break
             }
-            return null
+            val event = FancyItemPresetLookupEvent(result)
+            Bukkit.getPluginManager().callEvent(event)
+            return event.matched
         }
     }
+
+    var priority: Int = 0
+        private set
 
     val entities: MutableMap<String, ArmorStandPreset> = HashMap()
 
@@ -103,6 +112,10 @@ class FancyItemPreset(section: ConfigurationSection) {
             if (settings.isString("rightClickPickup")) {
                 this.rightClickPickup = RightClickPickup.valueOf(settings.getString("rightClickPickup")!!)
             }
+        }
+
+        if (section.isInt("priority")) {
+            this.priority = section.getInt("priority")
         }
     }
 }

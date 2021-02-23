@@ -1,0 +1,16 @@
+priority: 0
+match:
+  materials:
+  - LEATHER_BOOTS
+  - GOLDEN_BOOTS
+  - CHAINMAIL_BOOTS
+  - IRON_BOOTS
+  - DIAMOND_BOOTS
+  - NETHERITE_BOOTS
+entities:
+  item:
+    position:
+      y: 0.065
+    bodyParts:
+      feet:
+        item: $item

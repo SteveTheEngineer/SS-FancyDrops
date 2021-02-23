@@ -1,0 +1,16 @@
+priority: 2
+match:
+  materials:
+  - LEATHER_CHESTPLATE
+  - GOLDEN_CHESTPLATE
+  - CHAINMAIL_CHESTPLATE
+  - IRON_CHESTPLATE
+  - DIAMOND_CHESTPLATE
+  - NETHERITE_CHESTPLATE
+entities:
+  item:
+    position:
+      y: -0.835
+    bodyParts:
+      chest:
+        item: $item

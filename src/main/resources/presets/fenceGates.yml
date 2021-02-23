@@ -1,0 +1,23 @@
+priority: 13
+match:
+  materials:
+  - OAK_FENCE_GATE
+  - SPRUCE_FENCE_GATE
+  - BIRCH_FENCE_GATE
+  - JUNGLE_FENCE_GATE
+  - ACACIA_FENCE_GATE
+  - DARK_OAK_FENCE_GATE
+  - CRIMSON_FENCE_GATE
+  - WARPED_FENCE_GATE
+entities:
+  item:
+    position:
+      x: -0.25
+      y: -1.46
+    bodyParts:
+      head:
+        item: $item
+  hint:
+    position:
+      y: 0.5
+    customName: x$$amount$$

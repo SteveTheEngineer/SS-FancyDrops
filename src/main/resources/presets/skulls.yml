@@ -1,0 +1,37 @@
+priority: 18
+match: # The matching rules of this preset
+  materials: # The list of materials to match. The entries in this list are regular expressions. If the list is empty, or this entry isn't present, any material will be accepted
+    - SKELETON_SKULL
+    - WITHER_SKELETON_SKULL
+    - PLAYER_HEAD
+    - ZOMBIE_HEAD
+    - CREEPER_HEAD
+    - DRAGON_HEAD
+  displayNames: [] # The list of item display names to match. The entries in this list are regular expressions. If the list is empty, or this entry isn't present, any display name will be accepted
+  minAmount: 0 # The minimum amount of the item to match
+  maxAmount: 127 # The maximum amount of the item to match
+  settings:
+    rightClickPickup: DISABLED # The right click pickup mode for this preset. DISABLED means the item can only be picked up by coming close to it, ENABLED means the item can be picked up both ways, and REQUIRED means the item can ONLY be picked up by right clicking on it. This feature requires at least one entity of the item to not be a marker
+  entities: # The armor stands of the item
+    item:
+      position: # The position relative to the item position. This is also affected by the item rotation
+        x: 0 # Default: 0
+        y: -1.435 # Default: 0
+        z: 0 # Default: 0
+      bodyParts:
+        head: # The accepted keys are: hand (the angle controls the right arm), off_hand (the angle controls the left arm ), feet (the angle controls the right leg), legs (the angle controls the left leg), chest (the angle controls the body), head (the angle controls the head)
+          angle: # The angles are in degrees
+            x: 0 # Default: 0
+            y: 0 # Default: 0
+            z: 0 # Default: 0
+          item: $item # The item to set to this slot. This can be either a material or $item. If it's set to $item, the item stack of the fancy item will be used instead
+      marker: false # Default: true
+      invsible: true # Default: true
+      small: false # Default: false
+      arms: true # Default: false
+      basePlate: true # Default: true
+      staticRotation: false # If staticYaw is true, the item rotation will always be 0. Default: false
+    hint: # Note that none of the parameters are required to be present
+      position:
+        y: 0.5
+      customName: "x$$amount$$" # The custom name of the armor stand. The variables are: $$material$$, $$amount$$ and $$displayName$$. Default: null

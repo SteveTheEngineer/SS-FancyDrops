@@ -1,0 +1,15 @@
+priority: 12
+match:
+  materials:
+  - CROSSBOW
+entities:
+  item:
+    position:
+      y: -1.215
+      z: 0.5
+    bodyParts:
+      hand:
+        angle:
+          x: 90
+          y: 105
+        item: $item

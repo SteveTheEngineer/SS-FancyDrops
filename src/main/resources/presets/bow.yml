@@ -1,0 +1,16 @@
+priority: 9
+match:
+  materials:
+  - BOW
+entities:
+  item:
+    position:
+      y: -1.3418
+      z: 0.25
+    bodyParts:
+      hand:
+        angle:
+          x: 180
+          y: -10
+          z: 90
+        item: $item

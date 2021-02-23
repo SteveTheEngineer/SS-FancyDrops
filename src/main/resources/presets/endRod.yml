@@ -1,0 +1,15 @@
+priority: 16
+match:
+  materials:
+  - END_ROD
+entities:
+  item:
+    position:
+      y: -1.65
+    bodyParts:
+      head:
+        item: $item
+  hint:
+    position:
+      y: 0.5
+    customName: x$$amount$$
