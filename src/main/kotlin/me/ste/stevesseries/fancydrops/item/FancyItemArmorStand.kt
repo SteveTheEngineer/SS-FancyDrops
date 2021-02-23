@@ -30,7 +30,10 @@ class FancyItemArmorStand(
         this.location = this.expectedLocation
     }
 
-    val expectedLocation get() = this.fancyItem.item.location.add(this.preset.position.clone().rotateAroundY(Math.toRadians(-1 * (this.location.yaw + 90.0))))
+    val expectedLocation
+        get() = this.fancyItem.item.location.add(
+            this.preset.position.clone().rotateAroundY(Math.toRadians(-1 * (this.location.yaw + 90.0)))
+        )
 
     val entityMetadataPacket: PacketContainer
         get() {
