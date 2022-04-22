@@ -25,7 +25,6 @@ dependencies {
     implementation(kotlin("stdlib"))
     pluginRuntimeOnly("me.ste.stevesseries.kotlin:kotlin:1.6.20")
 
-    implementation(files("run/versions/1.18.2/paper-1.18.2.jar"))
     implementation("org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT")
 
     depend("com.comphenix.protocol:ProtocolLib:4.7.0")
