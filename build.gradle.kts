@@ -42,8 +42,8 @@ pluginDescription {
 }
 
 pluginCommands {
-    command("fancydropsreload", usage = "/fancydropsreload", description = "Reloads the item presets.")
-    command("fancydropstestconfig", usage = "/fancydropstestconfig", description = "Runs some tests to check the currently active configuration.")
+    command("fancydropsreload", usage = "/fancydropsreload", description = "Reloads the item presets and messages.")
+    command("fancydropstestconfig", usage = "/fancydropstestconfig", description = "Runs some tests to verify the currently active configuration.")
 }
 
 pluginPermissions {
