@@ -6,7 +6,6 @@ match: # The matching rules of this preset
     - PLAYER_HEAD
     - ZOMBIE_HEAD
     - CREEPER_HEAD
-    - DRAGON_HEAD
   displayNames: [] # The list of item display names to match. The entries in this list are regular expressions. If the list is empty, or this entry isn't present, any display name will be accepted
   minAmount: 0 # The minimum amount of the item to match
   maxAmount: 127 # The maximum amount of the item to match
@@ -25,12 +24,12 @@ entities: # The armor stands of the item
           y: 0 # Default: 0
           z: 0 # Default: 0
         item: $item # The item to set to this slot. This can be either a material or $item. If it's set to $item, the item stack of the fancy item will be used instead
-    marker: false # Default: true
-    invsible: true # Default: true
+    marker: true # Default: true
+    invisible: true # Default: true
     small: false # Default: false
-    arms: true # Default: false
+    arms: false # Default: false
     basePlate: true # Default: true
-    staticRotation: false # If staticYaw is true, the item rotation will always be 0. Default: false
+    staticRotation: false # If staticRotation is true, the item rotation will always be 0. Default: false
   hint: # Note that none of the parameters are required to be present
     position:
       y: 0.5

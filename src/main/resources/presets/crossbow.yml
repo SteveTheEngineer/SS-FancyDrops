@@ -1,7 +1,7 @@
 priority: 12
 match:
   materials:
-  - CROSSBOW
+    - CROSSBOW
 entities:
   item:
     position:

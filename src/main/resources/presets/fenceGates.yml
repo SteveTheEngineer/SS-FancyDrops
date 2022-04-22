@@ -1,14 +1,14 @@
 priority: 13
 match:
   materials:
-  - OAK_FENCE_GATE
-  - SPRUCE_FENCE_GATE
-  - BIRCH_FENCE_GATE
-  - JUNGLE_FENCE_GATE
-  - ACACIA_FENCE_GATE
-  - DARK_OAK_FENCE_GATE
-  - CRIMSON_FENCE_GATE
-  - WARPED_FENCE_GATE
+    - OAK_FENCE_GATE
+    - SPRUCE_FENCE_GATE
+    - BIRCH_FENCE_GATE
+    - JUNGLE_FENCE_GATE
+    - ACACIA_FENCE_GATE
+    - DARK_OAK_FENCE_GATE
+    - CRIMSON_FENCE_GATE
+    - WARPED_FENCE_GATE
 entities:
   item:
     position:
@@ -19,7 +19,7 @@ entities:
         item: $item
   hint:
     position:
-      y: 0.5
+      y: 0.25
     customName: x$$amount$$
     customNameBoundingBox:
       min:

@@ -3,7 +3,6 @@ package me.ste.stevesseries.fancydrops.item
 import com.comphenix.protocol.ProtocolLibrary
 import com.comphenix.protocol.events.PacketContainer
 import com.comphenix.protocol.wrappers.EnumWrappers
-import com.comphenix.protocol.wrappers.Pair
 import com.comphenix.protocol.wrappers.WrappedChatComponent
 import com.comphenix.protocol.wrappers.WrappedDataWatcher
 import me.ste.stevesseries.fancydrops.packet.PacketPlayOutEntityEquipment
@@ -13,6 +12,7 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
 import org.bukkit.util.BoundingBox
+import com.comphenix.protocol.wrappers.Pair
 import java.util.*
 import kotlin.experimental.or
 
@@ -115,31 +115,31 @@ class FancyItemArmorStand(
         if (this.preset.basePlate) {
             armorStandFlags = armorStandFlags or 0x08
         }
-        watcher.setObject(14, WrappedDataWatcher.Registry.get(Byte::class.javaObjectType), armorStandFlags)
+        watcher.setObject(15, WrappedDataWatcher.Registry.get(Byte::class.javaObjectType), armorStandFlags)
 
         val head = this.preset.slots[EquipmentSlot.HEAD]
         if (head != null) {
-            watcher.setObject(15, WrappedDataWatcher.Registry.getVectorSerializer(), head.angle)
+            watcher.setObject(16, WrappedDataWatcher.Registry.getVectorSerializer(), head.angle)
         }
         val body = this.preset.slots[EquipmentSlot.CHEST]
         if (body != null) {
-            watcher.setObject(16, WrappedDataWatcher.Registry.getVectorSerializer(), body.angle)
+            watcher.setObject(17, WrappedDataWatcher.Registry.getVectorSerializer(), body.angle)
         }
         val leftArm = this.preset.slots[EquipmentSlot.OFF_HAND]
         if (leftArm != null) {
-            watcher.setObject(17, WrappedDataWatcher.Registry.getVectorSerializer(), leftArm.angle)
+            watcher.setObject(18, WrappedDataWatcher.Registry.getVectorSerializer(), leftArm.angle)
         }
         val rightArm = this.preset.slots[EquipmentSlot.HAND]
         if (rightArm != null) {
-            watcher.setObject(18, WrappedDataWatcher.Registry.getVectorSerializer(), rightArm.angle)
+            watcher.setObject(19, WrappedDataWatcher.Registry.getVectorSerializer(), rightArm.angle)
         }
         val leftLeg = this.preset.slots[EquipmentSlot.LEGS]
         if (leftLeg != null) {
-            watcher.setObject(19, WrappedDataWatcher.Registry.getVectorSerializer(), leftLeg.angle)
+            watcher.setObject(20, WrappedDataWatcher.Registry.getVectorSerializer(), leftLeg.angle)
         }
         val rightLeg = this.preset.slots[EquipmentSlot.FEET]
         if (rightLeg != null) {
-            watcher.setObject(20, WrappedDataWatcher.Registry.getVectorSerializer(), rightLeg.angle)
+            watcher.setObject(21, WrappedDataWatcher.Registry.getVectorSerializer(), rightLeg.angle)
         }
 
         return PacketPlayOutEntityMetadata(this.entityId, watcher.watchableObjects).container

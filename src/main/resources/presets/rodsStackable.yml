@@ -1,10 +1,10 @@
 priority: 6
 match:
   materials:
-  - STICK
-  - BAMBOO
-  - BONE
-  - BLAZE_ROD
+    - STICK
+    - BAMBOO
+    - BONE
+    - BLAZE_ROD
 entities:
   item:
     position:
@@ -18,8 +18,6 @@ entities:
           z: 90
         item: $item
   hint:
-    position:
-      y: 0.5
     customName: x$$amount$$
     customNameBoundingBox:
       min:

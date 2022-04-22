@@ -17,7 +17,7 @@ class PacketPlayOutDestroyEntities(private val entityIds: IntArray) : Packet() {
         get() {
             val packet = ProtocolLibrary.getProtocolManager().createPacket(PacketType.Play.Server.ENTITY_DESTROY)
 
-            packet.integerArrays.write(0, this.entityIds)
+            packet.intLists.write(0, this.entityIds.toList())
 
             return packet
         }

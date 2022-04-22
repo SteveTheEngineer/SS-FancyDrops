@@ -1,16 +1,16 @@
 priority: 15
 match:
   materials:
-  - STONE_BUTTON
-  - OAK_BUTTON
-  - SPRUCE_BUTTON
-  - BIRCH_BUTTON
-  - JUNGLE_BUTTON
-  - ACACIA_BUTTON
-  - DARK_OAK_BUTTON
-  - CRIMSON_BUTTON
-  - WARPED_BUTTON
-  - POLISHED_BLACKSTONE_BUTTON
+    - STONE_BUTTON
+    - OAK_BUTTON
+    - SPRUCE_BUTTON
+    - BIRCH_BUTTON
+    - JUNGLE_BUTTON
+    - ACACIA_BUTTON
+    - DARK_OAK_BUTTON
+    - CRIMSON_BUTTON
+    - WARPED_BUTTON
+    - POLISHED_BLACKSTONE_BUTTON
 entities:
   item:
     position:
@@ -19,8 +19,6 @@ entities:
       head:
         item: $item
   hint:
-    position:
-      y: 0.5
     customName: x$$amount$$
     customNameBoundingBox:
       min:

@@ -1,22 +1,21 @@
 package me.ste.stevesseries.fancydrops
 
 import com.comphenix.protocol.ProtocolLibrary
+import me.ste.stevesseries.fancydrops.command.ReloadCommand
+import me.ste.stevesseries.fancydrops.command.TestConfigCommand
 import me.ste.stevesseries.fancydrops.item.FancyItem
 import me.ste.stevesseries.fancydrops.listener.ItemListener
 import me.ste.stevesseries.fancydrops.listener.PacketListener
 import me.ste.stevesseries.fancydrops.listener.PlayerListener
 import me.ste.stevesseries.fancydrops.preset.FancyItemPreset
-import net.md_5.bungee.api.ChatColor
 import org.bukkit.Bukkit
 import org.bukkit.GameMode
-import org.bukkit.Particle
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.Item
 import org.bukkit.plugin.java.JavaPlugin
 import java.io.InputStreamReader
 import java.nio.file.Files
-import java.nio.file.Paths
 import java.util.jar.JarFile
 import java.util.logging.Level
 
@@ -28,7 +27,7 @@ class FancyDrops : JavaPlugin() {
 
     private val presetsPath = this.dataPath.resolve("presets")
 
-    private lateinit var messagesConfiguration: FileConfiguration
+    internal lateinit var messagesConfiguration: FileConfiguration
 
     override fun onEnable() {
         this.reloadPluginConfiguration()
@@ -62,22 +61,8 @@ class FancyDrops : JavaPlugin() {
             }
         }, 0L, 5L)
 
-        this.getCommand("fancydropsreload")!!.setExecutor { sender, _, _, _ ->
-            if(sender.hasPermission("stevesseries.fancydrops.reload")) {
-                this.reloadPluginConfiguration()
-                for((_, item) in FancyItem.ITEMS) {
-                    val preset = FancyItemPreset.matchPreset(item.item.itemStack)
-                    if(preset != null) {
-                        item.preset = preset
-                    }
-                    item.refresh()
-                }
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.messagesConfiguration.getString("config-reloaded")))
-            } else {
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', this.messagesConfiguration.getString("no-permission")))
-            }
-            return@setExecutor true
-        }
+        this.getCommand("fancydropsreload")!!.setExecutor(ReloadCommand(this))
+        this.getCommand("fancydropstestconfig")!!.setExecutor(TestConfigCommand(this))
 
         for(listener in PacketListener(this).listeners) {
             ProtocolLibrary.getProtocolManager().addPacketListener(listener)
@@ -176,7 +161,7 @@ class FancyDrops : JavaPlugin() {
         }
     }
 
-    private fun reloadPluginConfiguration() {
+    internal fun reloadPluginConfiguration() {
         if (!Files.isDirectory(this.dataPath)) {
             Files.createDirectory(this.dataPath)
         }
@@ -192,7 +177,7 @@ class FancyDrops : JavaPlugin() {
             if(Files.isRegularFile(file) && file.fileName.toString().endsWith(".yml")) {
                 val presetConfig = YamlConfiguration()
                 presetConfig.load(InputStreamReader(Files.newInputStream(file)))
-                presets += FancyItemPreset(presetConfig)
+                presets += FancyItemPreset(file, presetConfig)
             }
         }
         presets.sortWith { a, b ->

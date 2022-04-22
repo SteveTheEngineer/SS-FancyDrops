@@ -1,20 +1,17 @@
-priority: 16
+priority: 23
 match:
   materials:
-    - END_ROD
+    - CONDUIT
 entities:
   item:
     position:
-      x: 0.2
-      y: -1.65
+      y: -1.57
     bodyParts:
       head:
         item: $item
-        angle:
-          x: -60
   hint:
     position:
-      y: 0.5
+      y: 0.15
     customName: x$$amount$$
     customNameBoundingBox:
       min:

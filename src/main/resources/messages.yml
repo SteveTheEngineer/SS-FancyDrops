@@ -1,2 +1,20 @@
-config-reloaded: "&eThe plugin configuration has been reloaded"
-no-permission: "&cInsufficient permissions"
+config-reloaded: "&eThe plugin configuration has been reloaded."
+no-permission: "&cInsufficient permissions."
+
+running-material-test: "&eRunning material coverage test..."
+material-test-success: "&aMaterial coverage test passed! 100%% coverage."
+material-test-fail: "&cMaterial coverage test failed! %d%% (%d/%d) coverage. Unmatched materials: %s"
+
+running-typo-test: "&eRunning typo test..."
+typo-test-success: "&aTypo test passed!"
+typo-test-warning: "&6Warning: Material name %s (preset %s) contains a lowercase letter!"
+
+running-unused-test: "&eRunning unused material names test..."
+unused-test-success: "&aUnused material names test passed!"
+unused-test-error: "&cError: Material name %s (preset %s) doesn't match any material."
+unused-test-fail: "&cUnused material names failed!"
+
+running-duplicate-test: "&eRunning duplicate material names test..."
+duplicate-test-success: "&aDuplicate material names test passed!"
+duplicate-test-error: "&cError: Material name %s (preset %s) has a duplicate."
+duplicate-test-fail: "&cDuplicate material names test failed!"

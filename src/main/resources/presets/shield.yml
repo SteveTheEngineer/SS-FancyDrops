@@ -1,7 +1,7 @@
 priority: 10
 match:
   materials:
-  - SHIELD
+    - SHIELD
 entities:
   item:
     position:

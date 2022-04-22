@@ -4,10 +4,11 @@ import me.ste.stevesseries.fancydrops.event.FancyItemPresetLookupEvent
 import org.bukkit.Bukkit
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.inventory.ItemStack
+import java.nio.file.Path
 import java.util.*
 import java.util.regex.Pattern
 
-class FancyItemPreset(section: ConfigurationSection) {
+class FancyItemPreset(val file: Path, section: ConfigurationSection) {
     enum class RightClickPickup {
         DISABLED,
         ENABLED,

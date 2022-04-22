@@ -30,7 +30,7 @@ class PacketListener(plugin: Plugin) {
         this.listeners += object : PacketAdapter(plugin, PacketType.Play.Server.ENTITY_DESTROY) {
             override fun onPacketSending(event: PacketEvent) {
                 val ids: MutableSet<Int> = HashSet()
-                for(id in event.packet.integerArrays.read(0)) {
+                for(id in event.packet.intLists.read(0)) {
                     val fancyItem = FancyItem.getByEntityId(id)
                     if(fancyItem != null) {
                         fancyItem.removeObserver(event.player)
@@ -39,7 +39,7 @@ class PacketListener(plugin: Plugin) {
                     }
                 }
 
-                event.packet.integerArrays.write(0, ids.toIntArray())
+                event.packet.intLists.write(0, ids.toList())
                 if(ids.isEmpty()) {
                     event.isCancelled = true
                 }
@@ -48,14 +48,19 @@ class PacketListener(plugin: Plugin) {
 
         this.listeners += object : PacketAdapter(plugin, PacketType.Play.Client.USE_ENTITY) {
             override fun onPacketReceiving(event: PacketEvent) {
-                val entityUseAction = event.packet.entityUseActions.read(0)
+                val enumEntityUseAction = event.packet.enumEntityUseActions.read(0)
+                val entityUseAction = enumEntityUseAction.action
+
                 if(event.player.gameMode != GameMode.SPECTATOR && (entityUseAction == EnumWrappers.EntityUseAction.INTERACT || entityUseAction == EnumWrappers.EntityUseAction.INTERACT_AT)) {
                     val entityId = event.packet.integers.read(0)
                     for((_, item) in FancyItem.ITEMS) {
                         for(stand in item.entities) {
                             if(stand.entityId == entityId) {
                                 if(item.preset.rightClickPickup != FancyItemPreset.RightClickPickup.DISABLED && item.item.pickupDelay <= 0) {
-                                    item.item.teleport(event.player)
+                                    this.plugin.server.scheduler.runTask(this.plugin, Runnable {
+                                        item.item.teleport(event.player)
+                                    })
+
                                     item.pickupEnabled = true
                                 }
                                 event.isCancelled = true

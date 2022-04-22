@@ -1,7 +1,7 @@
 priority: 9
 match:
   materials:
-  - BOW
+    - BOW
 entities:
   item:
     position:

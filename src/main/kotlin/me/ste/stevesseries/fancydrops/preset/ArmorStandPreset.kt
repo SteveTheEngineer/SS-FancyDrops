@@ -77,7 +77,7 @@ class ArmorStandPreset(section: ConfigurationSection) {
         val bodyParts = section.getConfigurationSection("bodyParts")
         if (bodyParts != null) {
             for (key in bodyParts.getKeys(false)) {
-                this.slots[EquipmentSlot.valueOf(key.toUpperCase())] =
+                this.slots[EquipmentSlot.valueOf(key.uppercase())] =
                     BodyPart(bodyParts.getConfigurationSection(key)!!)
             }
         }

@@ -1,17 +1,17 @@
-priority: 16
+priority: 21
 match:
   materials:
-    - END_ROD
+    - LIGHTNING_ROD
 entities:
   item:
     position:
-      x: 0.2
-      y: -1.65
+      z: -0.325
+      y: -0.72
     bodyParts:
       head:
         item: $item
         angle:
-          x: -60
+          x: 180
   hint:
     position:
       y: 0.5

@@ -1,21 +1,18 @@
-priority: 16
+priority: 19
 match:
   materials:
-    - END_ROD
+    - DRAGON_HEAD
 entities:
   item:
     position:
-      x: 0.2
-      y: -1.65
+      y: -1.435
     bodyParts:
       head:
         item: $item
-        angle:
-          x: -60
   hint:
     position:
-      y: 0.5
-    customName: x$$amount$$
+      y: 1.0
+    customName: "x$$amount$$"
     customNameBoundingBox:
       min:
         x: -0.5
@@ -23,5 +20,5 @@ entities:
         z: -0.5
       max:
         x: 0.5
-        y: 0.5
+        y: 1.0
         z: 0.5

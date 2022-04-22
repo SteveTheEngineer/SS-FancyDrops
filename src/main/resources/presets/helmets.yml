@@ -1,13 +1,13 @@
 priority: 3
 match:
   materials:
-  - LEATHER_HELMET
-  - GOLDEN_HELMET
-  - CHAINMAIL_HELMET
-  - IRON_HELMET
-  - DIAMOND_HELMET
-  - TURTLE_HELMET
-  - NETHERITE_HELMET
+    - LEATHER_HELMET
+    - GOLDEN_HELMET
+    - CHAINMAIL_HELMET
+    - IRON_HELMET
+    - DIAMOND_HELMET
+    - TURTLE_HELMET
+    - NETHERITE_HELMET
 entities:
   item:
     position:
