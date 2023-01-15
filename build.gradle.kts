@@ -26,7 +26,6 @@ dependencies {
     pluginRuntimeOnly("com.github.SteveTheEngineer:SS-Kotlin:1.8.0")
 
     implementation("org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT")
-    implementation(files("run/versions/1.19.3/paper-1.19.3.jar"))
 
     depend("com.comphenix.protocol:ProtocolLib:5.0.0-SNAPSHOT")
 }
