@@ -11,6 +11,8 @@ match:
     - CRIMSON_BUTTON
     - WARPED_BUTTON
     - POLISHED_BLACKSTONE_BUTTON
+    - MANGROVE_BUTTON
+    - BAMBOO_BUTTON
 entities:
   item:
     position:

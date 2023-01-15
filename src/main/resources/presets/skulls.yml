@@ -6,6 +6,7 @@ match: # The matching rules of this preset
     - PLAYER_HEAD
     - ZOMBIE_HEAD
     - CREEPER_HEAD
+    - PIGLIN_HEAD
   displayNames: [] # The list of item display names to match. The entries in this list are regular expressions. If the list is empty, or this entry isn't present, any display name will be accepted
   minAmount: 0 # The minimum amount of the item to match
   maxAmount: 127 # The maximum amount of the item to match

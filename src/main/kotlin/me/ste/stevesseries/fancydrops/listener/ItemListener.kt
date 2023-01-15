@@ -23,15 +23,15 @@ object ItemListener : Listener {
     fun onEntityPickupItemVisual(event: EntityPickupItemEvent) {
         val fancyItem = FancyItem.ITEMS[event.item.uniqueId]
         if (fancyItem != null) {
-            for (stand in fancyItem.entities) {
-                ProtocolLibrary.getProtocolManager().broadcastServerPacket(
-                    PacketPlayOutCollectItem(
-                        stand.entityId,
-                        event.entity.entityId,
-                        fancyItem.item.itemStack.amount
-                    ).container
-                )
-            }
+            val stand = fancyItem.entities.firstOrNull() ?: return
+
+            ProtocolLibrary.getProtocolManager().broadcastServerPacket(
+                PacketPlayOutCollectItem(
+                    stand.entityId,
+                    event.entity.entityId,
+                    fancyItem.item.itemStack.amount
+                ).container
+            )
         }
     }
 

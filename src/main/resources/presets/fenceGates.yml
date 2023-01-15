@@ -9,6 +9,8 @@ match:
     - DARK_OAK_FENCE_GATE
     - CRIMSON_FENCE_GATE
     - WARPED_FENCE_GATE
+    - MANGROVE_FENCE_GATE
+    - BAMBOO_FENCE_GATE
 entities:
   item:
     position:

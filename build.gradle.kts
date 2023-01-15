@@ -1,12 +1,12 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
-    kotlin("jvm") version "1.6.20"
-    id("me.ste.stevesseries.bukkitgradle") version "1.0"
+    kotlin("jvm") version "1.8.0"
+    id("com.github.SteveTheEngineer.SS-BukkitGradle") version "1.4"
 }
 
 group = "me.ste.stevesseries"
-version = "0.0.0-mc1.18.2"
+version = "0.0.1-mc1.19.3"
 description = "A plugin that lets you customize how your dropped items look in the world."
 
 java {
@@ -18,25 +18,26 @@ repositories {
     maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
     maven("https://oss.sonatype.org/content/groups/public/")
     maven("https://repo.dmulloy2.net/nexus/repository/public/")
-    maven("https://mvn-public.steenesvc.cf/releases")
+    maven("https://jitpack.io")
 }
 
 dependencies {
     implementation(kotlin("stdlib"))
-    pluginRuntimeOnly("me.ste.stevesseries.kotlin:kotlin:1.6.20")
+    pluginRuntimeOnly("com.github.SteveTheEngineer:SS-Kotlin:1.8.0")
 
-    implementation("org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT")
+    implementation("org.spigotmc:spigot-api:1.19.3-R0.1-SNAPSHOT")
+    implementation(files("run/versions/1.19.3/paper-1.19.3.jar"))
 
-    depend("com.comphenix.protocol:ProtocolLib:4.7.0")
+    depend("com.comphenix.protocol:ProtocolLib:5.0.0-SNAPSHOT")
 }
 
 runServer {
-    downloadUri.set("https://papermc.io/api/v2/projects/paper/versions/1.18.2/builds/301/downloads/paper-1.18.2-301.jar")
+    downloadUri.set("https://api.papermc.io/v2/projects/paper/versions/1.19.3/builds/378/downloads/paper-1.19.3-378.jar")
 }
 
 pluginDescription {
     mainClass.set("me.ste.stevesseries.fancydrops.FancyDrops")
-    apiVersion.set("1.18")
+    apiVersion.set("1.19")
     authors.add("SteveTheEngineer")
 }
 

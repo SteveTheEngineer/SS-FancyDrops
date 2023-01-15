@@ -13,6 +13,9 @@ import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
 import org.bukkit.util.BoundingBox
 import com.comphenix.protocol.wrappers.Pair
+import com.comphenix.protocol.wrappers.WrappedDataValue
+import me.ste.stevesseries.fancydrops.dataValues
+import org.bukkit.Bukkit
 import java.util.*
 import kotlin.experimental.or
 
@@ -67,7 +70,7 @@ class FancyItemArmorStand(
                         WrappedDataWatcher.Registry.get(Boolean::class.javaObjectType)
                     ), this.customNameObservers.contains(player.uniqueId) || this.preset.customNameBoundingBox == null
                 )
-                ProtocolLibrary.getProtocolManager().sendServerPacket(player, PacketPlayOutEntityMetadata(this.entityId, watcher.watchableObjects).container)
+                ProtocolLibrary.getProtocolManager().sendServerPacket(player, PacketPlayOutEntityMetadata(this.entityId, watcher.dataValues).container)
             }
         }
     }
@@ -142,7 +145,7 @@ class FancyItemArmorStand(
             watcher.setObject(21, WrappedDataWatcher.Registry.getVectorSerializer(), rightLeg.angle)
         }
 
-        return PacketPlayOutEntityMetadata(this.entityId, watcher.watchableObjects).container
+        return PacketPlayOutEntityMetadata(this.entityId, watcher.dataValues).container
     }
 
     val equipmentPacket: PacketContainer?

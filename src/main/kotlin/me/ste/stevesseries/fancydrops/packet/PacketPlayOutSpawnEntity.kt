@@ -3,9 +3,12 @@ package me.ste.stevesseries.fancydrops.packet
 import com.comphenix.protocol.PacketType
 import com.comphenix.protocol.ProtocolLibrary
 import com.comphenix.protocol.events.PacketContainer
+import net.minecraft.util.MathHelper
 import org.bukkit.Location
 import org.bukkit.entity.EntityType
 import org.bukkit.util.Vector
+import java.lang.Double.max
+import java.lang.Double.min
 import java.util.*
 
 class PacketPlayOutSpawnEntity(
@@ -26,12 +29,13 @@ class PacketPlayOutSpawnEntity(
             packet.doubles.write(0, this.location.x)
             packet.doubles.write(1, this.location.y)
             packet.doubles.write(2, this.location.z)
-            packet.integers.write(4, (this.location.yaw * 256F / 360F).toInt())
-            packet.integers.write(5, (this.location.pitch * 256F / 360F).toInt())
-            packet.integers.write(6, this.data)
-            packet.integers.write(1, (this.velocity.x * 8000).toInt())
-            packet.integers.write(2, (this.velocity.y * 8000).toInt())
-            packet.integers.write(3, (this.velocity.z * 8000).toInt())
+            packet.integers.write(1, (max(-3.9, min(3.9, this.velocity.x)) * 8000.0).toInt())
+            packet.integers.write(2, (max(-3.9, min(3.9, this.velocity.y)) * 8000).toInt())
+            packet.integers.write(3, (max(-3.9, min(3.9, this.velocity.z)) * 8000).toInt())
+            packet.bytes.write(0, (this.location.pitch * 256F / 360F).toInt().toByte())
+            packet.bytes.write(1, (this.location.yaw * 256F / 360F).toInt().toByte())
+            packet.bytes.write(2, (this.location.yaw * 256F / 360F).toInt().toByte()) //headYaw
+            packet.integers.write(4, this.data)
 
             return packet
         }
