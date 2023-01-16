@@ -34,7 +34,7 @@ entities: # The armor stands of the item
   hint: # Note that none of the parameters are required to be present
     position:
       y: 0.5
-    customName: "x$$amount$$" # The custom name of the armor stand. The variables are: $$material$$, $$amount$$ and $$displayName$$. Default: null
+    customName: "x$$amount$$" # The custom name of the armor stand. The variables are: $$material$$, $$amount$$, $$customName$$ and $$displayName$$. Default: null
     customNameBoundingBox: # The bounding box the player has to hover over to see the custom name, relative to the item's position
       min:
         x: -0.5
