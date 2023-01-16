@@ -3,7 +3,6 @@ package me.ste.stevesseries.fancydrops.packet
 import com.comphenix.protocol.PacketType
 import com.comphenix.protocol.ProtocolLibrary
 import com.comphenix.protocol.events.PacketContainer
-import net.minecraft.util.MathHelper
 import org.bukkit.Location
 import org.bukkit.entity.EntityType
 import org.bukkit.util.Vector

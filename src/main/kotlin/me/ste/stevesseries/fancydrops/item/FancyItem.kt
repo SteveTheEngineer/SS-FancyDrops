@@ -126,4 +126,10 @@ class FancyItem(var preset: FancyItemPreset, val item: Item) {
             this.addObserver(observer)
         }
     }
+
+    fun refreshCustomNames() {
+        for (entity in this.entities) {
+            entity.refreshCustomName()
+        }
+    }
 }

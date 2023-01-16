@@ -1,4 +1,4 @@
-package me.ste.stevesseries.fancydrops
+package me.ste.stevesseries.fancydrops.extensions
 
 import com.comphenix.protocol.wrappers.WrappedDataValue
 import com.comphenix.protocol.wrappers.WrappedDataWatcher

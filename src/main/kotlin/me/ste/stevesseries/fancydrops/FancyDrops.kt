@@ -42,6 +42,12 @@ class FancyDrops : JavaPlugin() {
         }, 0L, 1L)
 
         this.server.scheduler.runTaskTimer(this, Runnable {
+            for ((_, item) in FancyItem.ITEMS) {
+                item.refreshCustomNames()
+            }
+        }, 0L, 20L)
+
+        this.server.scheduler.runTaskTimer(this, Runnable {
             for (player in this.server.onlinePlayers) {
                 val reachDistance = if (player.gameMode == GameMode.CREATIVE) 5.0 else 4.0
                 val blockDistance = player.rayTraceBlocks(reachDistance * 2.0)?.hitPosition?.distance(player.eyeLocation.toVector()) ?: Double.MAX_VALUE

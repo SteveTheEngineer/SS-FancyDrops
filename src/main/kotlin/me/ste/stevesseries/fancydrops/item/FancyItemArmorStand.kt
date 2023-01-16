@@ -13,9 +13,7 @@ import org.bukkit.inventory.EquipmentSlot
 import org.bukkit.inventory.ItemStack
 import org.bukkit.util.BoundingBox
 import com.comphenix.protocol.wrappers.Pair
-import com.comphenix.protocol.wrappers.WrappedDataValue
-import me.ste.stevesseries.fancydrops.dataValues
-import org.bukkit.Bukkit
+import me.ste.stevesseries.fancydrops.extensions.dataValues
 import java.util.*
 import kotlin.experimental.or
 
@@ -25,6 +23,7 @@ class FancyItemArmorStand(
     val entityId: Int,
     val entityUuid: UUID
 ) {
+    var currentCustomName = this.getCustomName()
     var location = this.fancyItem.item.location
     private val customNameObservers: MutableSet<UUID> = HashSet()
 
@@ -75,6 +74,40 @@ class FancyItemArmorStand(
         }
     }
 
+    private fun getCustomName(): String? {
+        var customName = this.preset.customName ?: return null
+
+        val stack = this.fancyItem.item.itemStack
+
+        customName = customName.replace("\$\$material\$\$", stack.type.name)
+        customName = customName.replace("\$\$amount\$\$", stack.amount.toString())
+        customName = customName.replace("\$\$displayName\$\$", stack.itemMeta?.displayName ?: "")
+        customName = customName.replace("\$\$customName\$\$", this.fancyItem.item.customName ?: "")
+
+        return customName
+    }
+
+    fun refreshCustomName() {
+        val customName = this.getCustomName() ?: return
+
+        if (this.currentCustomName == customName) {
+            return
+        }
+        this.currentCustomName = customName
+
+        val watcher = WrappedDataWatcher()
+
+        watcher.setObject(
+            2,
+            WrappedDataWatcher.Registry.getChatComponentSerializer(true),
+            Optional.of(WrappedChatComponent.fromText(customName).handle)
+        )
+
+        for (player in this.fancyItem.observers) {
+            ProtocolLibrary.getProtocolManager().sendServerPacket(player, PacketPlayOutEntityMetadata(this.entityId, watcher.dataValues).container)
+        }
+    }
+
     fun getEntityMetadataPacket(player: Player): PacketContainer {
         val watcher = WrappedDataWatcher()
 
@@ -84,18 +117,11 @@ class FancyItemArmorStand(
         }
         watcher.setObject(0, WrappedDataWatcher.Registry.get(Byte::class.javaObjectType), entityFlags)
 
-        var customName = this.preset.customName
-        if (customName != null) {
-            val stack = this.fancyItem.item.itemStack
-
-            customName = customName.replace("\$\$material\$\$", stack.type.name)
-            customName = customName.replace("\$\$amount\$\$", stack.amount.toString())
-            customName = customName.replace("\$\$displayName\$\$", stack.itemMeta?.displayName ?: "")
-
+        if (this.currentCustomName != null) {
             watcher.setObject(
                 2,
                 WrappedDataWatcher.Registry.getChatComponentSerializer(true),
-                Optional.of(WrappedChatComponent.fromText(customName).handle)
+                Optional.of(WrappedChatComponent.fromText(this.currentCustomName).handle)
             )
             watcher.setObject(
                 WrappedDataWatcher.WrappedDataWatcherObject(

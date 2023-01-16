@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "me.ste.stevesseries"
-version = "0.0.1-mc1.19.3"
+version = "0.0.2-mc1.19.3"
 description = "A plugin that lets you customize how your dropped items look in the world."
 
 java {
